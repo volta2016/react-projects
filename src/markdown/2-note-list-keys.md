@@ -93,3 +93,11 @@ const MyButton = () => {
   return <button onClick={() => handleClick("🍎")}>i'am a button</button>;
 };
 ```
+
+The difference between passing a direct function to onClick and passing the execution of the function with a parameter is that in the former case, the function is called without any arguments when the button is clicked, whereas in the latter case, the function is called with a specific argument that is passed at the time of rendering the button.
+
+In your first example, you are passing a reference to the handleClick function directly to the onClick event handler of the button. When the button is clicked, the handleClick function is called without any arguments, and the console will log "you clicked me".
+
+In your second example, you are passing an arrow function that calls the handleClick function with the argument "🍎" to the onClick event handler of the button. When the button is clicked, the arrow function is called, which in turn calls the handleClick function with the argument "🍎", and the console will log "me diste click: 🍎".
+
+Passing a function with a parameter can be useful when you need to pass some specific data to the function at the time the button is clicked, based on some user interaction or other conditions. However, if the function doesn't need any additional data and can be called directly with its original parameters, it is generally better to pass a reference to the function directly to onClick, as it can help improve performance by reducing the number of unnecessary re-renders.

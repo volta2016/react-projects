@@ -60,6 +60,10 @@ html {
   scrollbar-width: thin;
 }
 
+ul {
+  list-style: none;
+}
+
 @media (prefers-color-scheme: dark) {
 
   html {
