@@ -101,3 +101,27 @@ In your first example, you are passing a reference to the handleClick function d
 In your second example, you are passing an arrow function that calls the handleClick function with the argument "🍎" to the onClick event handler of the button. When the button is clicked, the arrow function is called, which in turn calls the handleClick function with the argument "🍎", and the console will log "me diste click: 🍎".
 
 Passing a function with a parameter can be useful when you need to pass some specific data to the function at the time the button is clicked, based on some user interaction or other conditions. However, if the function doesn't need any additional data and can be called directly with its original parameters, it is generally better to pass a reference to the function directly to onClick, as it can help improve performance by reducing the number of unnecessary re-renders.
+
+```jsx
+const MyButton = () => {
+  const handleClick = () => {
+    console.log("you clicked me");
+  };
+
+  return <button onClick={handleClick}>i'am a button</button>;
+};
+```
+
+we want when the client press click there execute the function
+
+this is a wrong
+
+```jsx
+const MyButton = () => {
+  const handleClick = () => {
+    console.log("you clicked me");
+  };
+
+  // bad return <button onClick={handleClick()}>i'am a button</button>;
+};
+```
