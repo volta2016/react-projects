@@ -1,8 +1,13 @@
 import React from "react";
 
 const NoControlado = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("click on me");
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         className="mb-2"
         type="text"
@@ -18,7 +23,7 @@ const NoControlado = () => {
         <option value="request">request</option>
         <option value="complete">complete</option>
       </select>
-      <button type="submit">Procesar</button>
+      <button type="submit">Prosecute</button>
     </form>
   );
 };
