@@ -112,3 +112,25 @@ const NoControlado = () => {
 
 export default NoControlado;
 ```
+
+Let´s to know other event sayed onSubmit this always is controled for react
+"onSubmit"
+
+## useRef
+
+When create our reference not yet rendering our form
+
+```jsx
+const form = useRef(null);
+```
+
+here we manipulate the DOM through the virtual DOM which is done by react.
+
+We have the property current and inside we have the form. This form is each one
+of our fields
+
+![current](../images/current-useref.png)
+
+![current](../images/form.current.png)
+
+## formData()

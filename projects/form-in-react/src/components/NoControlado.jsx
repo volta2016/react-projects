@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 
 const NoControlado = () => {
+  const form = useRef(null);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("click on me");
+    console.log(form.current);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} ref={form}>
       <input
         className="mb-2"
         type="text"
