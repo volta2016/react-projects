@@ -134,3 +134,103 @@ of our fields
 ![current](../images/form.current.png)
 
 ## formData()
+
+```jsx
+const handleSubmit = (e) => {
+  e.preventDefault();
+  console.log(form.current);
+  console.log(new FormData(form.current));
+};
+```
+
+let´s click on process inside we have a prototype inside the prototype have many attributes, the property that that we are interested in
+
+> entries
+
+this entries in some way we have to go through them, because they are different fields.
+
+let´s ocuppy spread operator of entries
+
+```jsx
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const data = new FormData(form.current);
+  console.log(...data.entries());
+};
+```
+
+![current](../images/spread-newformdata.png)
+
+this correpond each one our names.
+right now if we fill in each of the forms, can see the value
+
+![current](../images/fill-input.png)
+
+we can apply the default value inside our input, is important pass the attribute name.
+spread operator: allows an iterable element to be expanded
+copy each of its elements
+
+```jsx
+const dataObject = object.fromEntries([...data.entries()]);
+```
+
+we can destructuring direct the value that we need
+
+```jsx
+import React, { useRef } from "react";
+
+const NoControlado = () => {
+  const form = useRef(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(form.current);
+
+    const { title, description, state } = Object.fromEntries([
+      ...data.entries(),
+    ]);
+    console.log(title, description, state);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} ref={form}>
+      <input
+        className="mb-2"
+        type="text"
+        placeholder="enter your data"
+        name="title"
+        defaultValue="todo #01"
+      />
+      <textarea
+        className="mb-2"
+        placeholder="enter description"
+        name="description"
+        defaultValue="description #01"
+      ></textarea>
+      <select className="mb-2" name="state" defaultValue="complete">
+        <option value="request">request</option>
+        <option value="complete">complete</option>
+      </select>
+      <button type="submit">Prosecute</button>
+    </form>
+  );
+};
+
+export default NoControlado;
+```
+
+is a process more length, remember that we are working with form no controlled
+
+## Validate the data
+
+```jsx
+//validate the data
+if (title.trim() === "") return console.log("llena este campo");
+
+if (!title.trim()) return console.log("llena este campo");
+```
+
+is the same.
+We are controled this form once the client processes this form.
+
+each time that process the form, I clean it for viewing if are errors
