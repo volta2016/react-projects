@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-const NoControlado = () => {
+const NoControled = () => {
   const [error, setError] = useState("");
   const form = useRef(null);
 
@@ -46,4 +46,4 @@ const NoControlado = () => {
   );
 };
 
-export default NoControlado;
+export default NoControled;

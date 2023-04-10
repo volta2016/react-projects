@@ -1,10 +1,10 @@
-import NoControlado from "./components/NoControlado";
+import Controled from "./components/Controled";
 
 function App() {
   return (
     <div className="container">
       <h1>hi react app + vite!</h1>
-      <NoControlado />
+      <Controled />
     </div>
   );
 }

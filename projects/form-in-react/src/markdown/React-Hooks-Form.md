@@ -234,3 +234,76 @@ is the same.
 We are controled this form once the client processes this form.
 
 each time that process the form, I clean it for viewing if are errors
+
+```jsx
+import React, { useRef, useState } from "react";
+
+const NoControled = () => {
+  const [error, setError] = useState("");
+  const form = useRef(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError("");
+    //catch the data
+    const data = new FormData(form.current);
+
+    const { title, description, state } = Object.fromEntries([
+      ...data.entries(),
+    ]);
+    //validate the data
+    if (!title.trim() || !description.trim() || !state.trim())
+      return setError("fill the fields");
+
+    console.log(title, description, state);
+    //send the data
+  };
+
+  return (
+    <form onSubmit={handleSubmit} ref={form}>
+      <input
+        className="mb-2"
+        type="text"
+        placeholder="enter your data"
+        name="title"
+        defaultValue="todo #01"
+      />
+      <textarea
+        className="mb-2"
+        placeholder="enter description"
+        name="description"
+        defaultValue="description #01"
+      ></textarea>
+      <select className="mb-2" name="state" defaultValue="complete">
+        <option value="request">request</option>
+        <option value="complete">complete</option>
+      </select>
+      <button type="submit">Prosecute</button>
+      {error !== "" && error}
+    </form>
+  );
+};
+
+export default NoControled;
+```
+
+## Form controled
+
+For now, let's create a state for each of our states
+
+```jsx
+const [title, setTitle] = useState("");
+const [description, setDescription] = useState("");
+const [state, setState] = useState("pending");
+```
+
+we have to do the association with each one of the inputs.
+With the value we indicated it each one of states corresponding.
+Let´s to save, we have a error. warning say:
+you privided a value prop to a form field without an onChange.
+
+The idea is each time I write on input is related to setTitle, remember that this setTitle do that is modified the state.
+How we use this setTile the console give us the error is use oneChange
+
+How we use this setTile the console give us the error to use oneChange, this onChange you pass like atributo, is other event that has React.
+Similar how we to use onSubmit, always we can catch the event and use setTitle
