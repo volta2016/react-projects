@@ -307,3 +307,82 @@ How we use this setTile the console give us the error is use oneChange
 
 How we use this setTile the console give us the error to use oneChange, this onChange you pass like atributo, is other event that has React.
 Similar how we to use onSubmit, always we can catch the event and use setTitle
+
+```jsx
+import React, { useState } from "react";
+
+const Controled = () => {
+  const [title, setTitle] = useState("Todo #01");
+  const [description, setDescription] = useState("Description #01");
+  const [state, setState] = useState("pending");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(title, description, state);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        className="mb-2"
+        type="text"
+        placeholder="enter your data"
+        name="title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <textarea
+        className="mb-2"
+        placeholder="enter description"
+        name="description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      ></textarea>
+      <select
+        className="mb-2"
+        name="state"
+        value={state}
+        onChange={(e) => setState(e.target.value)}
+      >
+        <option value="request">request</option>
+        <option value="complete">complete</option>
+      </select>
+      <button type="submit">Prosecute</button>
+    </form>
+  );
+};
+
+export default Controled;
+```
+
+## Avoid use to much useState
+
+Let´s initialize only one state, the state it will be an object
+
+```jsx
+const [todo, setTodo] = useState({
+  title: "Todo #01",
+  description: "Description #01",
+  state: "pending",
+});
+```
+
+if we save up to this point we will break the code, because no exist yet
+title, description and state, in fact we are using setTitle which doesn't exist yet.
+
+- 1 first let´s to use setTodo
+
+```jsx
+<input
+  className="mb-2"
+  type="text"
+  placeholder="enter your data"
+  name="title"
+  value={title}
+  onChange={(e) => setTodo({ ...todo, title: e.target.value })}
+/>
+```
+
+with this copy we make sure that the current state is still maintained, because I need the copy if the client writes in the text area or selects some other option in the selects. this is for avoiding each one states.
+
+The only difference is that initialize our useState like an object

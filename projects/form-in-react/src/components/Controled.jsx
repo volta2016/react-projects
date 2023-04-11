@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 
 const Controled = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [state, setState] = useState("pending");
+  const [todo, setTodo] = useState({
+    title: "Todo #01",
+    description: "Description #01",
+    state: "pending",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(title, description, state);
+    console.log(todo.title, todo.description, todo.state);
   };
 
   return (
@@ -17,21 +19,21 @@ const Controled = () => {
         type="text"
         placeholder="enter your data"
         name="title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        value={todo.title}
+        onChange={(e) => setTodo({ ...todo, title: e.target.value })}
       />
       <textarea
         className="mb-2"
         placeholder="enter description"
         name="description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        value={todo.description}
+        onChange={(e) => setTodo(e.target.value)}
       ></textarea>
       <select
         className="mb-2"
         name="state"
-        value={state}
-        onChange={(e) => setState(e.target.value)}
+        value={todo.state}
+        onChange={(e) => setTodo(e.target.value)}
       >
         <option value="request">request</option>
         <option value="complete">complete</option>
