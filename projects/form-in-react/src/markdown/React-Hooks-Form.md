@@ -386,3 +386,109 @@ title, description and state, in fact we are using setTitle which doesn't exist 
 with this copy we make sure that the current state is still maintained, because I need the copy if the client writes in the text area or selects some other option in the selects. this is for avoiding each one states.
 
 The only difference is that initialize our useState like an object
+
+## explanation spread operator
+
+```jsx
+const Cat = () => {
+  const [cat, setCat] = useState({
+    name: "Felix",
+    year: 3,
+  });
+
+  const hancleClick = () => {
+    // setCat({ ...cat, year: cat.year + 1 });
+    setCat((prev) => ({ ...prev, year: cat.year + 1 }));
+  };
+
+  return (
+    <>
+      <h2>
+        {cat.name} - {cat.year}
+      </h2>
+      <button onClick={hancleClick}>update year</button>
+      <hr />
+    </>
+  );
+};
+
+export default Cat;
+```
+
+both way are correct:
+
+- 1 we pass to setState the spread operator with the previous data of the state plus the update of the property
+- 2 pass a fnction with the data previus, this must return the new value of the state
+  callback function
+
+```jsx
+const hancleClick = () => {
+  // setCat({ ...cat, year: cat.year + 1 });
+  setCat((prev) => ({ ...prev, year: cat.year + 1 }));
+};
+```
+
+## Reuse onChange
+
+I want to reuse is the onChange this logic is the same in each of the input, only change the property
+name, decription and state.
+
+we have saved a lot of code, reusing the onChange and using the technique of the square brackets as property name in objects
+
+```jsx
+import React, { useState } from "react";
+
+const Controled = () => {
+  const [todo, setTodo] = useState({
+    title: "Todo #01",
+    description: "Description #01",
+    state: "pending",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(todo.title, todo.description, todo.state);
+  };
+
+  const handleChange = (e) => {
+    // console.log((e.target.name, e.target.value));
+
+    setTodo({
+      ...todo,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        className="mb-2"
+        type="text"
+        placeholder="enter your data"
+        name="title"
+        value={todo.title}
+        onChange={handleChange}
+      />
+      <textarea
+        className="mb-2"
+        placeholder="enter description"
+        name="description"
+        value={todo.description}
+        onChange={handleChange}
+      ></textarea>
+      <select
+        className="mb-2"
+        name="state"
+        value={todo.state}
+        onChange={handleChange}
+      >
+        <option value="request">request</option>
+        <option value="complete">complete</option>
+      </select>
+      <button type="submit">Prosecute</button>
+    </form>
+  );
+};
+
+export default Controled;
+```

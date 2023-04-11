@@ -19,6 +19,8 @@ const NoControled = () => {
 
     console.log(title, description, state);
     //send the data
+    console.log("pass validate!");
+    form.current.reset();
   };
 
   return (

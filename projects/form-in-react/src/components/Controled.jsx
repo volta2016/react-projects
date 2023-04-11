@@ -12,6 +12,15 @@ const Controled = () => {
     console.log(todo.title, todo.description, todo.state);
   };
 
+  const handleChange = (e) => {
+    // console.log((e.target.name, e.target.value));
+
+    setTodo({
+      ...todo,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -20,20 +29,20 @@ const Controled = () => {
         placeholder="enter your data"
         name="title"
         value={todo.title}
-        onChange={(e) => setTodo({ ...todo, title: e.target.value })}
+        onChange={handleChange}
       />
       <textarea
         className="mb-2"
         placeholder="enter description"
         name="description"
         value={todo.description}
-        onChange={(e) => setTodo(e.target.value)}
+        onChange={handleChange}
       ></textarea>
       <select
         className="mb-2"
         name="state"
         value={todo.state}
-        onChange={(e) => setTodo(e.target.value)}
+        onChange={handleChange}
       >
         <option value="request">request</option>
         <option value="complete">complete</option>
