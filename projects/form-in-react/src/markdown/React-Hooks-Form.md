@@ -492,3 +492,54 @@ const Controled = () => {
 
 export default Controled;
 ```
+
+## Checkbox
+
+```jsx
+<div>
+  <input
+    type="checkbox"
+    name="priority"
+    className="form-input"
+    id="inputCheck"
+  />
+  <label htmlFor="inputCheck">Prioritize</label>
+</div>
+```
+
+Let's add an attribute checked in the input of kind checkbox. What name we add to the input
+we put a priority, this must be added inside useState
+
+```jsx
+const [todo, setTodo] = useState({
+  title: "Todo #01",
+  description: "Description #01",
+  state: "pending",
+  prority: true,
+});
+```
+
+we see pass nothing, we must add a property that is not a value, it's checked
+
+```jsx
+<div>
+  <input
+    type="checkbox"
+    name="priority"
+    className="form-input"
+    id="inputCheck"
+    checked={todo.prority}
+  />
+  <label htmlFor="inputCheck">Prioritize</label>
+</div>
+```
+
+is this field is selected should recibes true or false, then let´s set the property
+onChange, because in console show this error
+
+![error-onchange](../images/onchange-error.png)
+
+when put value in each field it said to us that it was missing onChange.
+indeed we have the relation with our inputs with our state.
+
+## oneChange checkbox

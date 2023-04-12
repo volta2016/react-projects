@@ -5,6 +5,7 @@ const Controled = () => {
     title: "Todo #01",
     description: "Description #01",
     state: "pending",
+    prority: true,
   });
 
   const handleSubmit = (e) => {
@@ -38,6 +39,17 @@ const Controled = () => {
         value={todo.description}
         onChange={handleChange}
       ></textarea>
+      <div>
+        <input
+          type="checkbox"
+          name="priority"
+          className="form-input"
+          id="inputCheck"
+          checked={todo.prority}
+          onChange={(e) => setTodo({ ...todo, prority: e.target.checked })}
+        />
+        <label htmlFor="inputCheck">Prioritize</label>
+      </div>
       <select
         className="mb-2"
         name="state"
