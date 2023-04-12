@@ -5,25 +5,42 @@ const Controled = () => {
     title: "Todo #01",
     description: "Description #01",
     state: "pending",
-    prority: true,
+    prority: false,
   });
+  const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(todo.title, todo.description, todo.state);
+    const { title, description } = todo;
+    // console.log(title, description, state, prority);
+
+    // small validation
+    if (!title.trim() || !description.trim()) {
+      console.log("campos vacíos");
+      setError(true);
+      return;
+    } else {
+      setError(false);
+    }
   };
 
   const handleChange = (e) => {
     // console.log((e.target.name, e.target.value));
+    const { name, value, checked, type } = e.target;
 
-    setTodo({
-      ...todo,
-      [e.target.name]: e.target.value,
-    });
+    setTodo((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
+
+  const PrintError = () => (
+    <div className="alert alert-danger">Todos los campos obligatorios</div>
+  );
 
   return (
     <form onSubmit={handleSubmit}>
+      {error && <PrintError />}
       <input
         className="mb-2"
         type="text"
@@ -39,16 +56,18 @@ const Controled = () => {
         value={todo.description}
         onChange={handleChange}
       ></textarea>
-      <div>
+      <div className="form-check">
         <input
+          className="form-check-input"
           type="checkbox"
-          name="priority"
-          className="form-input"
           id="inputCheck"
           checked={todo.prority}
-          onChange={(e) => setTodo({ ...todo, prority: e.target.checked })}
+          onChange={handleChange}
+          name="prority"
         />
-        <label htmlFor="inputCheck">Prioritize</label>
+        <label className="form-check-label" htmlFor="inputCheck">
+          Prioritize
+        </label>
       </div>
       <select
         className="mb-2"

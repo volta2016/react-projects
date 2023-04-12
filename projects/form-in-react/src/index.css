@@ -463,10 +463,10 @@ select {
   display: block;
 }
 
-[type='checkbox'],
+/* [type='checkbox'],
 [type='radio'] {
   display: initial;
-}
+} */
 
 input {
   color: #1d1d1d;
