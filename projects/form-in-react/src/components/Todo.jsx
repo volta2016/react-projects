@@ -1,6 +1,5 @@
-const Todo = ({ todo }) => {
-  const { title, description, state, priority } = todo;
-  console.log(description);
+const Todo = ({ todo, deleteTodo }) => {
+  const { title, description, state, priority, id } = todo;
 
   return (
     <li className="todo d-flex justify-content-between align-items-start p-2 mb-1">
@@ -12,7 +11,12 @@ const Todo = ({ todo }) => {
           {description}
         </p>
         <div className="d-flex gap-2">
-          <button className="btn btn-sm btn-danger">Delete</button>
+          <button
+            onClick={() => deleteTodo(id)}
+            className="btn btn-sm btn-danger"
+          >
+            Delete
+          </button>
           <button className="btn btn-sm btn-info">Update</button>
         </div>
       </div>

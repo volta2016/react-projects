@@ -820,3 +820,81 @@ export default Todo;
 ```
 
 We have our component todo check with all data necessary for showing to user
+
+## delete Todo
+
+let´s create our function deleteTodo then pass for props
+
+```jsx
+const deleteTodo = (id) => {
+  const newArray = todos.filter((todo) => todo.id !== id);
+  setTodo(newArray);
+};
+```
+
+```jsx
+<Todos todos={todos} deleteTodo={deleteTodo} />
+```
+
+```jsx
+import React from "react";
+import Todo from "./Todo";
+
+const Todos = ({ todos, deleteTodo }) => {
+  return (
+    <>
+      <h2 className="text-center">
+        Todos{" "}
+        <span role="img" aria-label="todo">
+          📚
+        </span>
+      </h2>
+      <ul>
+        {todos.map((todo) => (
+          <Todo key={todo.id} todo={todo} deleteTodo={deleteTodo} />
+        ))}
+        {todos.length === 0 && (
+          <li className="list-gruop-item text-center">without Todo!</li>
+        )}
+      </ul>
+    </>
+  );
+};
+
+export default Todos;
+```
+
+let´s pass a callback because don´t wanted the execution inmediently of this function
+
+```jsx
+const Todo = ({ todo, deleteTodo }) => {
+  const { title, description, state, priority, id } = todo;
+
+  return (
+    <li className="todo d-flex justify-content-between align-items-start p-2 mb-1">
+      <div>
+        <h5 className={`${state && "text-decoration-line-through"}`}>
+          {title}
+        </h5>
+        <p className={`${state && "text-decoration-line-through"}`}>
+          {description}
+        </p>
+        <div className="d-flex gap-2">
+          <button
+            onClick={() => deleteTodo(id)}
+            className="btn btn-sm btn-danger"
+          >
+            Delete
+          </button>
+          <button className="btn btn-sm btn-info">Update</button>
+        </div>
+      </div>
+      <span className="badge bg-primary rounden-pill">
+        {priority && "Priority"}
+      </span>
+    </li>
+  );
+};
+
+export default Todo;
+```

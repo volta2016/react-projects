@@ -33,6 +33,10 @@ function App() {
     setTodo([...todos, todo]);
   };
 
+  const deleteTodo = (id) => {
+    const newArray = todos.filter((todo) => todo.id !== id);
+    setTodo(newArray);
+  };
   return (
     <div className="container">
       <h1 className="my-5">
@@ -43,7 +47,7 @@ function App() {
       </h1>
 
       <Form addTodo={addTodo} />
-      <Todos todos={todos} />
+      <Todos todos={todos} deleteTodo={deleteTodo} />
     </div>
   );
 }

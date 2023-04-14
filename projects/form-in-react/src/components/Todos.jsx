@@ -1,7 +1,7 @@
 import React from "react";
 import Todo from "./Todo";
 
-const Todos = ({ todos }) => {
+const Todos = ({ todos, deleteTodo }) => {
   return (
     <>
       <h2 className="text-center">
@@ -12,8 +12,11 @@ const Todos = ({ todos }) => {
       </h2>
       <ul>
         {todos.map((todo) => (
-          <Todo key={todo.id} todo={todo} />
+          <Todo key={todo.id} todo={todo} deleteTodo={deleteTodo} />
         ))}
+        {todos.length === 0 && (
+          <li className="list-gruop-item text-center">without Todo!</li>
+        )}
       </ul>
     </>
   );
