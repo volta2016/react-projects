@@ -1,27 +1,46 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 
-const Controled = () => {
+const Form = ({ addTodo }) => {
   const [todo, setTodo] = useState({
     title: "Todo #01",
     description: "Description #01",
     state: "pending",
-    prority: false,
+    priority: true,
   });
-  const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { title, description } = todo;
-    // console.log(title, description, state, prority);
+    const { title, description, state } = todo;
+    console.log(title, description, state);
 
     // small validation
     if (!title.trim() || !description.trim()) {
       console.log("campos vacíos");
-      setError(true);
-      return;
-    } else {
-      setError(false);
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Title and description is mandatory!",
+      });
     }
+
+    function generateID() {
+      return Math.random().toString(36).slice(2);
+    }
+
+    addTodo({
+      id: generateID(),
+      ...todo,
+      state: todo.state === "complete",
+    });
+
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Taks added succesful!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   const handleChange = (e) => {
@@ -34,13 +53,8 @@ const Controled = () => {
     }));
   };
 
-  const PrintError = () => (
-    <div className="alert alert-danger">Todos los campos obligatorios</div>
-  );
-
   return (
     <form onSubmit={handleSubmit}>
-      {error && <PrintError />}
       <input
         className="mb-2"
         type="text"
@@ -61,9 +75,9 @@ const Controled = () => {
           className="form-check-input"
           type="checkbox"
           id="inputCheck"
-          checked={todo.prority}
+          checked={todo.priority}
           onChange={handleChange}
-          name="prority"
+          name="priority"
         />
         <label className="form-check-label" htmlFor="inputCheck">
           Prioritize
@@ -75,12 +89,12 @@ const Controled = () => {
         value={todo.state}
         onChange={handleChange}
       >
-        <option value="request">request</option>
+        <option value="pending">pending</option>
         <option value="complete">complete</option>
       </select>
-      <button type="submit">Prosecute</button>
+      <button type="submit">Add Todos</button>
     </form>
   );
 };
 
-export default Controled;
+export default Form;

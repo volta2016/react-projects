@@ -515,7 +515,7 @@ const [todo, setTodo] = useState({
   title: "Todo #01",
   description: "Description #01",
   state: "pending",
-  prority: true,
+  priority: true,
 });
 ```
 
@@ -528,7 +528,7 @@ we see pass nothing, we must add a property that is not a value, it's checked
     name="priority"
     className="form-input"
     id="inputCheck"
-    checked={todo.prority}
+    checked={todo.priority}
   />
   <label htmlFor="inputCheck">Prioritize</label>
 </div>
@@ -547,7 +547,7 @@ indeed we have the relation with our inputs with our state.
 ```jsx
 const handleChange = (e) => {
   // console.log((e.target.name, e.target.value));
-  //onChange={(e) => setTodo({ ...todo, prority: e.target.checked })}
+  //onChange={(e) => setTodo({ ...todo, priority: e.target.checked })}
   setTodo({
     ...todo,
     [e.target.name]:
@@ -567,14 +567,14 @@ const Controled = () => {
     title: "Todo #01",
     description: "Description #01",
     state: "pending",
-    prority: false,
+    priority: false,
   });
   const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const { title, description } = todo;
-    // console.log(title, description, state, prority);
+    // console.log(title, description, state, priority);
 
     // small validation
     if (!title.trim() || !description.trim()) {
@@ -623,9 +623,9 @@ const Controled = () => {
           className="form-check-input"
           type="checkbox"
           id="inputCheck"
-          checked={todo.prority}
+          checked={todo.priority}
           onChange={handleChange}
-          name="prority"
+          name="priority"
         />
         <label className="form-check-label" htmlFor="inputCheck">
           Prioritize
@@ -652,3 +652,171 @@ export default Controled;
 - let´s destructuring of todo for a small validation
 - finally destructuring of e.target for the kind o checkbox
   the code is more readable
+
+## Practice Form CRUD
+
+We leave out the initial state, this is advisable because each time we render our
+component, in order not to create this constant each time, we leave it out the initial state.
+
+Let´s to create an array of object
+
+```jsx
+import { useState } from "react";
+import Form from "./components/Form";
+
+const initialState = [
+  {
+    id: 1,
+    title: "Todo #01",
+    description: "Description #01",
+    state: true,
+    priority: false,
+  },
+  {
+    id: 2,
+    title: "Todo #02",
+    description: "Description #02",
+    state: false,
+    priority: false,
+  },
+  {
+    id: 3,
+    title: "Todo #03",
+    description: "Description #03",
+    state: false,
+    priority: true,
+  },
+];
+
+function App() {
+  const [todo, setTodo] = useState([]);
+  return (
+    <div className="container">
+      <h1>hi react app + vite!</h1>
+
+      <Form />
+    </div>
+  );
+}
+
+export default App;
+```
+
+this initialState is replaced for the array, this way we can visualize the scheme of the elements.
+
+```jsx
+const initialState = [
+  {
+    id: 1,
+    title: "Todo #01",
+    description: "Description #01",
+    state: true,
+    priority: false,
+  },
+  {
+    id: 2,
+    title: "Todo #02",
+    description: "Description #02",
+    state: false,
+    priority: false,
+  },
+  {
+    id: 3,
+    title: "Todo #03",
+    description: "Description #03",
+    state: false,
+    priority: true,
+  },
+];
+
+function App() {
+  const [todos, setTodo] = useState(initialState);
+  return (
+    <div className="container">
+      <h1>hi react app + vite! Form</h1>
+
+      <Form />
+      <Todos todos={todos} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+Let's create Todos component then pass the props todos, so we can iterate.
+
+Let's show an alert if the user leaves some field empty, we need validate title and description.
+
+Each time that leave title and description empty, the app show me an alert with the message:
+Title and description are mandatory!
+
+pass addTodo props for form component, remember that must recive a todo
+
+```jsx
+const addTodo = (todo) => {
+  setTodo(...todos, todo);
+};
+```
+
+the form recive this via props, each time that user press click musted add a new todo, but I going to
+create
+
+## Read todo
+
+Let´s pass todo like a props
+
+```jsx
+import React from "react";
+import Todo from "./Todo";
+
+const Todos = ({ todos }) => {
+  return (
+    <>
+      <h2 className="text-center">
+        Todos{" "}
+        <span role="img" aria-label="todo">
+          📚
+        </span>
+      </h2>
+      <ul>
+        {todos.map((todo) => (
+          <Todo key={todo.id} todo={todo} />
+        ))}
+      </ul>
+    </>
+  );
+};
+
+export default Todos;
+```
+
+then let´s to receive the prop and we destructuring the data that need
+
+```jsx
+const Todo = ({ todo }) => {
+  const { title, description, state, priority } = todo;
+
+  return (
+    <li className="todo d-flex justify-content-between align-items-start p-2 mb-1 ">
+      <div>
+        <h5 className={`${state && "text-decoration-line-through"}`}>
+          {title}
+        </h5>
+        <p>{description}</p>
+        <div className="d-flex gap-2">
+          <button className="btn btn-sm btn-danger">Delete</button>
+          <button className="btn btn-sm btn-info">Update</button>
+        </div>
+      </div>
+      <span className="badge bg-primary rounden-pill">
+        {priority && "Priority"}
+      </span>
+    </li>
+  );
+};
+
+export default Todo;
+```
+
+We have our component todo check with all data necessary for showing to user
