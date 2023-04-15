@@ -898,3 +898,55 @@ const Todo = ({ todo, deleteTodo }) => {
 
 export default Todo;
 ```
+
+## update Todo
+
+the map is always going to be useful for traversing and updating those arrays.
+
+```jsx
+const updateTodo = (id) => {
+  const newTodos = todos.map((todo) => {
+    if (todo.id === id) {
+      todo.state = !todo.state;
+    }
+    return todo;
+  });
+  setTodos(newTodos);
+};
+```
+
+In this code, the ternary operator checks if the id of the current todo object matches
+the given id. If it does, it creates a new object with the same properties as the original
+todo, but with its state property flipped (!todo.state). If the id doesn't match, it returns
+the original todo object. The spread operator (...) is used to create a new object with the
+same properties as the original todo object, but with the state property flipped.
+
+```jsx
+const updateTodo = (id) => {
+  const newTodos = todos.map((todo) =>
+    todo.id === id ? { ...todo, state: !todo.state } : todo
+  );
+  setTodos(newTodos);
+};
+```
+
+## order todo
+
+For order there is that occupy the sort method, this is a order through bolean
+sort allows us to order.
+
+(a, b) is the representation of each one of our object
+
+
+```jsx
+const orderTodo = (arrayTodo) => {
+    return arrayTodo.sort((a, b) => {
+      if (a.priority === b.priority) return 0;
+      if (a.priority) -1; //more priority
+      if (!a.priority) 1;
+    });
+  };
+```
+
+as I execute it immediately, each time that it renders our app it is going to call this function 
+orderAll that is going to send us to send to return to the new array

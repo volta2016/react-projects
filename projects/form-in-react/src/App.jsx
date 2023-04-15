@@ -2,29 +2,7 @@ import { useState } from "react";
 import Form from "./components/Form";
 import Todos from "./components/Todos";
 
-const initialState = [
-  {
-    id: 1,
-    title: "Todo #01",
-    description: "Description #01",
-    state: true,
-    priority: false,
-  },
-  {
-    id: 2,
-    title: "Todo #02",
-    description: "Description #02",
-    state: false,
-    priority: false,
-  },
-  {
-    id: 3,
-    title: "Todo #03",
-    description: "Description #03",
-    state: false,
-    priority: true,
-  },
-];
+const initialState = [];
 
 function App() {
   const [todos, setTodo] = useState(initialState);
@@ -37,6 +15,22 @@ function App() {
     const newArray = todos.filter((todo) => todo.id !== id);
     setTodo(newArray);
   };
+
+  const updateTodo = (id) => {
+    const newTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, state: !todo.state } : todo
+    );
+    setTodo(newTodos);
+  };
+
+  const orderTodo = (arrayTodo) => {
+    return arrayTodo.sort((a, b) => {
+      if (a.priority === b.priority) return 0;
+      if (a.priority) return -1; //more priority
+      if (!a.priority) return 1;
+    });
+  };
+
   return (
     <div className="container">
       <h1 className="my-5">
@@ -47,7 +41,11 @@ function App() {
       </h1>
 
       <Form addTodo={addTodo} />
-      <Todos todos={todos} deleteTodo={deleteTodo} />
+      <Todos
+        todos={orderTodo(todos)}
+        deleteTodo={deleteTodo}
+        updateTodo={updateTodo}
+      />
     </div>
   );
 }

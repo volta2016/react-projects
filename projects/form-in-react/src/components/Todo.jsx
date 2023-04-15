@@ -1,4 +1,4 @@
-const Todo = ({ todo, deleteTodo }) => {
+const Todo = ({ todo, deleteTodo, updateTodo }) => {
   const { title, description, state, priority, id } = todo;
 
   return (
@@ -17,7 +17,12 @@ const Todo = ({ todo, deleteTodo }) => {
           >
             Delete
           </button>
-          <button className="btn btn-sm btn-info">Update</button>
+          <button
+            onClick={() => updateTodo(id)}
+            className="btn btn-sm btn-info"
+          >
+            Update
+          </button>
         </div>
       </div>
       <span className="badge bg-primary rounden-pill">
