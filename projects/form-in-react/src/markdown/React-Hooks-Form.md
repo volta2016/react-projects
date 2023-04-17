@@ -937,16 +937,45 @@ sort allows us to order.
 
 (a, b) is the representation of each one of our object
 
-
 ```jsx
 const orderTodo = (arrayTodo) => {
-    return arrayTodo.sort((a, b) => {
-      if (a.priority === b.priority) return 0;
-      if (a.priority) -1; //more priority
-      if (!a.priority) 1;
-    });
-  };
+  return arrayTodo.sort((a, b) => {
+    if (a.priority === b.priority) return 0;
+    if (a.priority) -1; //more priority
+    if (!a.priority) 1;
+  });
+};
 ```
 
-as I execute it immediately, each time that it renders our app it is going to call this function 
+as I execute it immediately, each time that it renders our app it is going to call this function
 orderAll that is going to send us to send to return to the new array
+
+## localStorage and useEffect
+
+LocalStorage is a local storage of the browser only lives in the local storage of the user.
+each time that add a task we could save some in the localStorage.
+
+If I updated and delete, some tasks must be notified to localStorage.
+
+## useEffect intro
+
+Exist some que each time that a state change we are going to execute an action, this we called
+**useEffect**
+
+- useEffects always will be exucuted on the first rendering, we can see on devtools in the console.
+- if add an empty array only will be exucuted one time
+- we say it will be executed every time everything changes, we add all inside the depency array, every time everything changes
+  the all either because it will add, update and delete, we going to execute this code
+
+JSON.stringify(todos) -> transform the todos to string in format JSON, to make the communication backward, they come in JSON format, and we transform it into something that JavaScript understands.
+
+```jsx
+useEffect(() => {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}, [todos]);
+```
+
+each time that it initialize the application we can see an empty array
+
+if exist some in the local storage we going to use with the key todos, we had that transform
+with **"JSON.parse()"** with whatever comes from the local storage in case this fails or doesn't exist, we are going to initialize it with an empty array

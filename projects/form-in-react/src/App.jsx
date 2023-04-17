@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import Todos from "./components/Todos";
 
-const initialState = [];
+const initialState = JSON.parse(localStorage.getItem("todos")) || [];
 
 function App() {
   const [todos, setTodo] = useState(initialState);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (todo) => {
     setTodo([...todos, todo]);

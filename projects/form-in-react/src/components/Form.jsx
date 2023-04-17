@@ -3,8 +3,8 @@ import Swal from "sweetalert2";
 
 const Form = ({ addTodo }) => {
   const [todo, setTodo] = useState({
-    title: "Todo #01",
-    description: "Description #01",
+    title: "Title",
+    description: "Description",
     state: "pending",
     priority: true,
   });
