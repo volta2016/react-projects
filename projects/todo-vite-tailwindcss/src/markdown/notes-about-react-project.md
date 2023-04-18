@@ -36,3 +36,7 @@ module.exports = {
 ## resource
 
 [tailwind-cheat-sheet](https://nerdcave.com/tailwind-cheat-sheet)
+
+## Todo star project
+
+let´s working first one with mobile first
