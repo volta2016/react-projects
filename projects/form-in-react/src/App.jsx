@@ -37,8 +37,8 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="my-5">
-        hi react app + vite! Form
+      <h1 className="mb-h1">
+        Hi react app + vite! Form Todo List
         <span role="img" aria-label="form">
           ⚛️
         </span>

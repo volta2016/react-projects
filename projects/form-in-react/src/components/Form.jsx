@@ -56,7 +56,6 @@ const Form = ({ addTodo }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        className="mb-2"
         type="text"
         placeholder="enter your data"
         name="title"
@@ -64,7 +63,6 @@ const Form = ({ addTodo }) => {
         onChange={handleChange}
       />
       <textarea
-        className="mb-2"
         placeholder="enter description"
         name="description"
         value={todo.description}
@@ -72,23 +70,15 @@ const Form = ({ addTodo }) => {
       ></textarea>
       <div className="form-check mb-2">
         <input
-          className="form-check-input"
           type="checkbox"
           id="inputCheck"
           checked={todo.priority}
           onChange={handleChange}
           name="priority"
         />
-        <label className="form-check-label" htmlFor="inputCheck">
-          Prioritize
-        </label>
+        <label htmlFor="inputCheck">Prioritize</label>
       </div>
-      <select
-        className="mb-2"
-        name="state"
-        value={todo.state}
-        onChange={handleChange}
-      >
+      <select name="state" value={todo.state} onChange={handleChange}>
         <option value="pending">pending</option>
         <option value="complete">complete</option>
       </select>

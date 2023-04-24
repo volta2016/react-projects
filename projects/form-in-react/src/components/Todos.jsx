@@ -19,9 +19,7 @@ const Todos = ({ todos, deleteTodo, updateTodo }) => {
             updateTodo={updateTodo}
           />
         ))}
-        {todos.length === 0 && (
-          <li className="list-gruop-item text-center">without Todo!</li>
-        )}
+        {todos.length === 0 && <li className="text-center">without Todo!</li>}
       </ul>
     </>
   );

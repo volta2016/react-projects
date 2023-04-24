@@ -4,28 +4,20 @@ const Todo = ({ todo, deleteTodo, updateTodo }) => {
   return (
     <li className="todo d-flex justify-content-between align-items-start p-2 mb-1">
       <div>
-        <h5 className={`${state && "text-decoration-line-through"}`}>
-          {title}
-        </h5>
-        <p className={`${state && "text-decoration-line-through"}`}>
+        <h5 className={`title-todo ${state && "text-decoration"}`}>{title}</h5>
+        <p className={`text-todo ${state && "text-decoration"}`}>
           {description}
         </p>
         <div className="d-flex gap-2">
-          <button
-            onClick={() => deleteTodo(id)}
-            className="btn btn-sm btn-danger"
-          >
+          <button onClick={() => deleteTodo(id)} className="btn-delete">
             Delete
           </button>
-          <button
-            onClick={() => updateTodo(id)}
-            className="btn btn-sm btn-info"
-          >
+          <button onClick={() => updateTodo(id)} className="btn-update">
             Update
           </button>
         </div>
       </div>
-      <span className="badge bg-primary rounden-pill">
+      <span className={`${priority ? "badge" : ""}`}>
         {priority && "Priority"}
       </span>
     </li>

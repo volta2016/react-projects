@@ -23,8 +23,9 @@
   --scrollbar-thumb-hover: var(--button-hover);
   --form-placeholder: #949494;
   --form-text: #1d1d1d;
-  --variable: #39a33c;
+  --variable: #339136;
   --highlight: #ff0;
+  --delete: #a10101;
   --select-arrow: url("data:image/svg+xml;charset=utf-8,%3C?xml version='1.0' encoding='utf-8'?%3E %3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' height='62.5' width='116.9' fill='%23161f27'%3E %3Cpath d='M115.3,1.6 C113.7,0 111.1,0 109.5,1.6 L58.5,52.7 L7.4,1.6 C5.8,0 3.2,0 1.6,1.6 C0,3.2 0,5.8 1.6,7.4 L55.5,61.3 C56.3,62.1 57.3,62.5 58.4,62.5 C59.4,62.5 60.5,62.1 61.3,61.3 L115.2,7.4 C116.9,5.8 116.9,3.2 115.3,1.6Z'/%3E %3C/svg%3E");
 }
 
@@ -33,7 +34,7 @@
     --background-body: #202b38;
     --background: #161f27;
     --background-alt: #1a242f;
-    --selection: #1c76c5;
+    --selection: #0f5593;
     --text-main: #dbdbdb;
     --text-bright: #fff;
     --text-muted: #a9b1ba;
@@ -48,7 +49,7 @@
     --scrollbar-thumb-hover: rgb(0, 0, 0);
     --form-placeholder: #a9a9a9;
     --form-text: #fff;
-    --variable: #d941e2;
+    --variable: #01600f;
     --highlight: #efdb43;
     --select-arrow: url("data:image/svg+xml;charset=utf-8,%3C?xml version='1.0' encoding='utf-8'?%3E %3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' height='62.5' width='116.9' fill='%23efefef'%3E %3Cpath d='M115.3,1.6 C113.7,0 111.1,0 109.5,1.6 L58.5,52.7 L7.4,1.6 C5.8,0 3.2,0 1.6,1.6 C0,3.2 0,5.8 1.6,7.4 L55.5,61.3 C56.3,62.1 57.3,62.5 58.4,62.5 C59.4,62.5 60.5,62.1 61.3,61.3 L115.2,7.4 C116.9,5.8 116.9,3.2 115.3,1.6Z'/%3E %3C/svg%3E");
   }
@@ -477,7 +478,7 @@ input {
   font-family: inherit;
   font-size: inherit;
   margin-right: 6px;
-  margin-bottom: 6px;
+  margin-bottom: 16px;
   padding: 10px;
   border: none;
   border-radius: 6px;
@@ -539,7 +540,7 @@ textarea {
   font-family: inherit;
   font-size: inherit;
   margin-right: 6px;
-  margin-bottom: 6px;
+  margin-bottom: 16px;
   padding: 10px;
   border: none;
   border-radius: 6px;
@@ -1697,7 +1698,51 @@ body>footer {
 }
 
 /* class UI CRUD*/
+
+.mb-h1 {
+  margin-bottom: 1.5rem;
+}
+
 .todo {
   background-color: var(--background);
   border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+
+.badge {
+  height: 16px;
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: .75em;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  background-color: var(--selection);
+}
+
+.btn-update {
+  background-color: var(--variable);
+}
+
+.btn-delete {
+  background-color: var(--delete);
+}
+
+.text-decoration {
+  text-decoration: line-through;
+}
+
+.title-todo {
+  font-size: 22px;
+  margin-top: 0;
+}
+.text-center {
+  text-align: center;
 }
