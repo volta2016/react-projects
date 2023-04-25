@@ -1,4 +1,13 @@
-const Todo = ({ todo, deleteTodo, updateTodo }) => {
+import React from "react";
+import { TodoType } from "../types";
+
+type Props = {
+  todo: TodoType,
+  deleteTodo: (id: number) => void,
+  updateTodo: (id: number) => void,
+};
+
+const Todo = ({ todo, deleteTodo, updateTodo }: Props) => {
   const { title, description, state, priority, id } = todo;
 
   return (
