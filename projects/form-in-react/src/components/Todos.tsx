@@ -1,5 +1,5 @@
 import React from "react";
-import Todo from "./Todo";
+import TodoItem from "./TodoItem";
 import { TodosProps } from "./types";
 
 const Todos = ({ todos, deleteTodo, updateTodo }: TodosProps) => {
@@ -13,7 +13,7 @@ const Todos = ({ todos, deleteTodo, updateTodo }: TodosProps) => {
       </h2>
       <ul>
         {todos.map((todo) => (
-          <Todo
+          <TodoItem
             key={todo.id}
             todo={todo}
             deleteTodo={deleteTodo}

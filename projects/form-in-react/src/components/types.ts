@@ -6,8 +6,8 @@ export interface Todo {
   priority?: boolean;
 }
 
-export type DeleteTodoFunction = (id: string) => number | void;
-export type UpdateTodoFunction = (id: string) => void;
+export type DeleteTodoFunction = (id: string) => number;
+export type UpdateTodoFunction = (id: string) => number;
 
 export interface TodosProps {
   todos: Todo[];
