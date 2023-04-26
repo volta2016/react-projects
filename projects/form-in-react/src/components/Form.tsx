@@ -84,7 +84,7 @@ const Form: React.FC<Props> = ({ addTodo }) => {
         value={todo.description}
         onChange={handleChange}
       ></textarea>
-      <div className="form-check mb-2">
+      <div className="form-check">
         <input
           type="checkbox"
           id="inputCheck"

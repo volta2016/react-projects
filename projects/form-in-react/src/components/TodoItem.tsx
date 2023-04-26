@@ -3,8 +3,8 @@ import { Todo } from "./types";
 
 type Props = {
   todo: Todo;
-  deleteTodo: (id: string) => number;
-  updateTodo: (id: string) => number;
+  deleteTodo: (id: string) => string;
+  updateTodo: (id: string) => string;
 };
 
 const TodoItem = ({ todo, deleteTodo, updateTodo }: Props) => {

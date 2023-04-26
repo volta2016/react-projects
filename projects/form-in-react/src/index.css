@@ -1746,3 +1746,8 @@ body>footer {
 .text-center {
   text-align: center;
 }
+
+.form-check {
+  display: flex;
+  gap: 1rem;
+}
