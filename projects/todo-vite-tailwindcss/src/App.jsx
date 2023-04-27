@@ -25,7 +25,7 @@ const App = () => {
         </form>
       </header>
       <main className="container mx-auto mt-8 px-4">
-        <div className="rounded-md bg-white">
+        <div className="rounded-md bg-white [&>article]:p-4">
           <article className="flex gap-4 border-b px-4 py-4">
             <button className="inline-block  h-5 w-5  gap-4 rounded-full border-2"></button>
             <p className="grow text-gray-600">
@@ -35,27 +35,27 @@ const App = () => {
               <CrossIcon />
             </button>
           </article>
-          <article>
+          <article className="flex gap-4 border-b px-4 py-4">
             <button className="inline-block  h-5 w-5  gap-4 rounded-full border-2"></button>
-            <p className="text-gray-600">
+            <p className="grow text-gray-600">
               complete online JS course Front end mentor
             </p>
             <button>
               <CrossIcon />
             </button>
           </article>
-          <article>
+          <article className="flex gap-4 border-b px-4 py-4">
             <button className="inline-block  h-5 w-5  gap-4 rounded-full border-2"></button>
-            <p className="text-gray-600">
+            <p className="grow text-gray-600">
               complete online JS course Front end mentor
             </p>
             <button>
               <CrossIcon />
             </button>
           </article>
-          <article>
+          <article className="flex gap-4 border-b px-4 py-4">
             <button className="inline-block  h-5 w-5  gap-4 rounded-full border-2"></button>
-            <p className="text-gray-600">
+            <p className="grow text-gray-600">
               complete online JS course Front end mentor
             </p>
             <button>
@@ -63,18 +63,20 @@ const App = () => {
             </button>
           </article>
 
-          <section>
-            <span>5 items left</span>
-            <button>Clear Complete</button>
+          <section className="flex justify-between px-4 py-4">
+            <span className="text-gray-400">5 items left</span>
+            <button className="text-gray-400">Clear Complete</button>
           </section>
         </div>
 
-        <section className="container mx-auto px-4">
-          <button>All</button>
-          <button>Active</button>
-          <button>Completed</button>
+        <section className="container mx-auto mt-8 bg-white px-4">
+          <div className="flex justify-center gap-4 bg-white p-4">
+            <button className="text-blue-600">All</button>
+            <button className="hover:text-blue-600">Active</button>
+            <button className="hover:text-blue-600">Completed</button>
+          </div>
         </section>
-        <p>Drag and Drop</p>
+        <p className="mt-8 text-center">Drag and Drop</p>
       </main>
     </div>
   );

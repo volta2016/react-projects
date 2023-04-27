@@ -40,3 +40,11 @@ module.exports = {
 ## Todo star project
 
 let´s working first one with mobile first
+
+## Tailwind + React
+
+this form we can pass a selector
+
+```html
+<div className="rounded-md bg-white [&>article]:p-4"></div>
+```
