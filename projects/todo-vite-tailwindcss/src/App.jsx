@@ -1,18 +1,18 @@
 import React from "react";
 import CrossIcon from "./components/icons/CrossIcon";
+import Moon from "./components/icons/Moon";
 
 const App = () => {
   return (
-    <div
-      className="min-h-screen bg-gray-200 bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain 
-    bg-center bg-no-repeat"
-    >
+    <div className="min-h-screen bg-gray-200 bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain bg-no-repeat">
       <header className="container mx-auto px-4 pt-8">
         <div className="flex justify-between">
           <h1 className="text-2xl uppercase tracking-[0.3em] text-white">
             Todo
           </h1>
-          <button>luna</button>
+          <button>
+            <Moon fill="#fff" />
+          </button>
         </div>
 
         <form className="mt-8 flex items-center  gap-4 overflow-hidden rounded-md bg-white px-4 py-4">

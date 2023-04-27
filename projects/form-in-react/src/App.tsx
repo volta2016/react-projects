@@ -19,6 +19,7 @@ function App() {
   const deleteTodo = (id: string) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
+    return "string";
   };
 
   const updateTodo = (id: string) => {
@@ -26,6 +27,7 @@ function App() {
       todo.id === id ? { ...todo, state: !todo.state } : todo
     );
     setTodos(newTodos);
+    return "string";
   };
 
   const orderTodo = (arrayTodo: Todo[]) => {
