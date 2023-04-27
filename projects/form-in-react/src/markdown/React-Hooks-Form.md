@@ -979,3 +979,21 @@ each time that it initialize the application we can see an empty array
 
 if exist some in the local storage we going to use with the key todos, we had that transform
 with **"JSON.parse()"** with whatever comes from the local storage in case this fails or doesn't exist, we are going to initialize it with an empty array
+
+## correct return update function migrate to tsx
+
+```jsx
+const deleteTodo = (id: string) => {
+  const newTodos = todos.filter((todo) => todo.id !== id);
+  setTodos(newTodos);
+  return "string";
+};
+
+const updateTodo = (id: string) => {
+  const newTodos = todos.map((todo) =>
+    todo.id === id ? { ...todo, state: !todo.state } : todo
+  );
+  setTodos(newTodos);
+  return "string";
+};
+```
