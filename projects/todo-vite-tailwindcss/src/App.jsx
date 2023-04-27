@@ -1,4 +1,5 @@
 import React from "react";
+import CrossIcon from "./components/icons/CrossIcon";
 
 const App = () => {
   return (
@@ -24,31 +25,50 @@ const App = () => {
         </form>
       </header>
       <main className="container mx-auto mt-8 px-4">
-        <article>
-          <button>circle</button>
-          <p>complete online JS course Front end mentor</p>
-          <button>X</button>
-        </article>
-        <article>
-          <button>circle</button>
-          <p>complete online JS course Frontend mentor 2</p>
-          <button>X</button>
-        </article>
-        <article>
-          <button>circle</button>
-          <p>complete online JS course Front end mentor 3</p>
-          <button>X</button>
-        </article>
-        <article>
-          <button>circle</button>
-          <p>complete online JS course Front end mentor 4</p>
-          <button>X</button>
-        </article>
+        <div className="rounded-md bg-white">
+          <article className="flex gap-4 border-b px-4 py-4">
+            <button className="inline-block  h-5 w-5  gap-4 rounded-full border-2"></button>
+            <p className="grow text-gray-600">
+              complete online JS course Front end mentor
+            </p>
+            <button>
+              <CrossIcon />
+            </button>
+          </article>
+          <article>
+            <button className="inline-block  h-5 w-5  gap-4 rounded-full border-2"></button>
+            <p className="text-gray-600">
+              complete online JS course Front end mentor
+            </p>
+            <button>
+              <CrossIcon />
+            </button>
+          </article>
+          <article>
+            <button className="inline-block  h-5 w-5  gap-4 rounded-full border-2"></button>
+            <p className="text-gray-600">
+              complete online JS course Front end mentor
+            </p>
+            <button>
+              <CrossIcon />
+            </button>
+          </article>
+          <article>
+            <button className="inline-block  h-5 w-5  gap-4 rounded-full border-2"></button>
+            <p className="text-gray-600">
+              complete online JS course Front end mentor
+            </p>
+            <button>
+              <CrossIcon />
+            </button>
+          </article>
 
-        <section>
-          <span>5 items left</span>
-          <button>Clear Complete</button>
-        </section>
+          <section>
+            <span>5 items left</span>
+            <button>Clear Complete</button>
+          </section>
+        </div>
+
         <section className="container mx-auto px-4">
           <button>All</button>
           <button>Active</button>
