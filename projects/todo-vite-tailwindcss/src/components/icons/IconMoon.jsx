@@ -1,6 +1,6 @@
 import React from "react";
 
-const Moon = ({ fill = "#fff", ...props }) => (
+const IconMoon = ({ fill = "#fff", ...props }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
     <path
       {...props}
@@ -11,4 +11,4 @@ const Moon = ({ fill = "#fff", ...props }) => (
   </svg>
 );
 
-export default Moon;
+export default IconMoon;

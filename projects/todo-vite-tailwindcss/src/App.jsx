@@ -26,7 +26,7 @@ const initialStateTodos = [
   {
     id: 4,
     title: "Pick up Groceries",
-    completed: false,
+    completed: true,
   },
 
   {
@@ -53,13 +53,29 @@ const App = () => {
     setTodos([...todos, newTodo]);
   };
 
+  const updateTodo = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  }; //change the state of complete with ! in this case use spread sintax
+
+  const removeTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }; // If the function returns true, the element is included in the new array; if it returns false, the element is excluded
+
   return (
     <div className="min-h-screen bg-gray-200 bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain bg-no-repeat">
       <Header />
       <main className="container mx-auto mt-8 px-4">
         <TodoCreate createTodo={createTodo} />
 
-        <Todolist todos={todos} />
+        <Todolist
+          todos={todos}
+          updateTodo={updateTodo}
+          removeTodo={removeTodo}
+        />
 
         <TodoComputed />
         {/* Todo Filter */}
