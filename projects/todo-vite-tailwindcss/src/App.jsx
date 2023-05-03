@@ -38,7 +38,7 @@ const initialStateTodos = [
 
 const App = () => {
   const [todos, setTodos] = useState(initialStateTodos);
-
+  const [filter, setFilter] = useState("all");
   function generateID() {
     return Math.random().toString(36).slice(2);
   }
@@ -65,6 +65,12 @@ const App = () => {
     setTodos(todos.filter((todo) => todo.id !== id));
   }; // If the function returns true, the element is included in the new array; if it returns false, the element is excluded
 
+  const computedItemsLeft = todos.filter((todo) => !todo.completed).length;
+
+  const clearCompleted = () => {
+    setTodos(todos.filter((todo) => !todo.completed));
+  };
+
   return (
     <div className="min-h-screen bg-gray-200 bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain bg-no-repeat">
       <Header />
@@ -77,7 +83,10 @@ const App = () => {
           removeTodo={removeTodo}
         />
 
-        <TodoComputed />
+        <TodoComputed
+          computedItemsLeft={computedItemsLeft}
+          clearCompleted={clearCompleted}
+        />
         {/* Todo Filter */}
         <TodoFilter />
         <footer className="mt-8 text-center">Drag and Drop</footer>
