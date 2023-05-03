@@ -38,14 +38,17 @@ const initialStateTodos = [
 
 const App = () => {
   const [todos, setTodos] = useState(initialStateTodos);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("completed");
+
+  const changeFilter = (filter) => setFilter(filter);
+
   function generateID() {
     return Math.random().toString(36).slice(2);
   }
 
   const createTodo = (title) => {
     const newTodo = {
-      id: Date.now(),
+      id: generateID(),
       title,
       completed: false,
     };
@@ -71,6 +74,19 @@ const App = () => {
     setTodos(todos.filter((todo) => !todo.completed));
   };
 
+  const filteredTodos = () => {
+    switch (filter) {
+      case "all":
+        return todos;
+      case "active":
+        return todos.filter((todo) => !todo.completed);
+      case "completed":
+        return todos.filter((todo) => todo.completed);
+      default:
+        return todos;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-200 bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain bg-no-repeat">
       <Header />
@@ -78,7 +94,7 @@ const App = () => {
         <TodoCreate createTodo={createTodo} />
 
         <Todolist
-          todos={todos}
+          todos={filteredTodos()}
           updateTodo={updateTodo}
           removeTodo={removeTodo}
         />
@@ -88,7 +104,7 @@ const App = () => {
           clearCompleted={clearCompleted}
         />
         {/* Todo Filter */}
-        <TodoFilter />
+        <TodoFilter changeFilter={changeFilter} filter={filter} />
         <footer className="mt-8 text-center">Drag and Drop</footer>
       </main>
     </div>
