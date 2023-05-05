@@ -88,7 +88,7 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-200 bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain bg-no-repeat">
+    <div className="min-h-screen bg-gray-200 bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain bg-no-repeat dark:bg-gray-900 dark:bg-[url('./assets/images/bg-mobile-dark.jpg')] ">
       <Header />
       <main className="container mx-auto mt-8 px-4">
         <TodoCreate createTodo={createTodo} />
@@ -105,7 +105,9 @@ const App = () => {
         />
         {/* Todo Filter */}
         <TodoFilter changeFilter={changeFilter} filter={filter} />
-        <footer className="mt-8 text-center">Drag and Drop</footer>
+        <footer className="mt-8 text-center dark:text-gray-400">
+          Drag and Drop
+        </footer>
       </main>
     </div>
   );
