@@ -177,3 +177,47 @@ In the map method, a ternary operator is used to check if the id of the current 
 If the id does not match, the original todo object is returned unchanged. This ensures that only the matched todo item is updated, and the rest of the todos array is preserved.
 
 Finally, the updated array of todos is passed to the setTodos function, which updates the state of the component and causes it to re-render with the updated list of todos.
+
+## Header Dark Mode
+
+Each time that we want to execute a code that is pending of some state, we can use useEffect, also, we can execute rendering for the first time
+
+## useRef
+
+In this case, we are access to the element that controls react
+
+```jsx
+import React, { useEffect, useState } from "react";
+import IconMoon from "./icons/IconMoon";
+import IconSun from "./icons/IconSun";
+
+const Header = () => {
+  const [darkMode, setdarkMode] = useState(true);
+  const refHeader = useRef(null);
+  useEffect(() => {
+    console.log("darkmode");
+    if (darkMode) {
+      refHeader.current.classList.add("dark");
+      localStorage.theme = "dark";
+    } else {
+      refHeader.current.classList.remove("dark");
+      localStorage.theme = "light";
+    }
+  }, [darkMode]);
+
+  return (
+    <header className="container mx-auto px-4 pt-8" ref={refHeader}>
+      <div className="flex justify-between">
+        <h1 className="text-2xl uppercase tracking-[0.3em] text-white">Todo</h1>
+        <button onClick={() => setdarkMode(!darkMode)}>
+          {darkMode ? <IconSun /> : <IconMoon />}
+        </button>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
+```
+
+but not is controls by react we don't need a reference

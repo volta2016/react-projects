@@ -5,7 +5,7 @@ import IconCross from "./icons/IconCross";
 const TodoItem = ({ todo, updateTodo, removeTodo }) => {
   const { id, title, completed } = todo;
   return (
-    <article className="flex gap-4 border-b px-4 py-4 dark:bg-gray-800">
+    <article className="flex gap-4 border-b px-4 py-4  dark:bg-gray-800">
       <button
         className={`h-5 w-5 flex-none rounded-full border-2 ${
           completed
