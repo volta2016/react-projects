@@ -3,7 +3,7 @@ import TodoItem from "./TodoItem";
 
 const Todolist = ({ todos, removeTodo, updateTodo }) => {
   return (
-    <div className="rounded-md bg-white [&>article]:p-4">
+    <div className="overflow-hidden rounded-t-md bg-white transition-all duration-700 [&>article]:p-4">
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
