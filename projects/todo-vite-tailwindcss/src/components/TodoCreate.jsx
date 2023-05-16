@@ -24,7 +24,7 @@ const TodoCreate = ({ createTodo }) => {
         className="w-full text-gray-400 outline-none transition-all duration-1000 dark:bg-gray-800"
         type="text"
         placeholder="Create new Todo..."
-        title={title}
+        value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
     </form>

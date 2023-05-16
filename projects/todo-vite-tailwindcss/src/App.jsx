@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-
+import { DragDropContext } from "@hello-pangea/dnd";
+import { reorder } from "./utils/dataAndUtils";
+import initialStateList from "./utils/dataAndUtils";
 import Header from "./components/Header";
 import TodoCreate from "./components/TodoCreate";
 import Todolist from "./components/Todolist";
 import TodoComputed from "./components/TodoComputed";
 import TodoFilter from "./components/TodoFilter";
 
-const initialStateTodos = JSON.parse(localStorage.getItem("todos")) || [];
+const initialStateTodos =
+  JSON.parse(localStorage.getItem("todos")) || initialStateList;
 
 const App = () => {
   const [todos, setTodos] = useState(initialStateTodos);
@@ -63,17 +66,32 @@ const App = () => {
     }
   };
 
+  const handleDragEnd = (result) => {
+    const { destination, source } = result;
+    if (!destination) return;
+    if (
+      source.index === destination.index &&
+      source.droppableId === destination.droppableId
+    )
+      return;
+
+    setTodos((prevTasks) =>
+      reorder(prevTasks, source.index, destination.index)
+    );
+  };
+
   return (
     <div className="min-h-screen bg-gray-200 bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain bg-no-repeat transition-all duration-1000 dark:bg-gray-900 dark:bg-[url('./assets/images/bg-mobile-dark.jpg')] md:bg-[url('./assets/images/bg-desktop-light.jpg')] md:dark:bg-[url('./assets/images/bg-desktop-dark.jpg')]">
       <Header />
       <main className="container mx-auto mt-8 px-4 md:max-w-xl">
         <TodoCreate createTodo={createTodo} />
-
-        <Todolist
-          todos={filteredTodos()}
-          updateTodo={updateTodo}
-          removeTodo={removeTodo}
-        />
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <Todolist
+            todos={filteredTodos()}
+            updateTodo={updateTodo}
+            removeTodo={removeTodo}
+          />
+        </DragDropContext>
 
         <TodoComputed
           computedItemsLeft={computedItemsLeft}
@@ -82,7 +100,24 @@ const App = () => {
         {/* Todo Filter */}
         <TodoFilter changeFilter={changeFilter} filter={filter} />
         <footer className="mt-8 text-center dark:text-gray-400">
-          Drag and Drop
+          <p>
+            <small>
+              Created with{" "}
+              <span role="img" aria-label="heart">
+                ❤️
+              </span>{" "}
+              by{" "}
+              <a
+                className="hover:text-blue-500"
+                href="https://github.com/volta2016"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @volta2016.
+              </a>{" "}
+              {new Date().getFullYear()}
+            </small>
+          </p>
         </footer>
       </main>
     </div>
