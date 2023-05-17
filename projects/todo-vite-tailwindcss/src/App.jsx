@@ -13,7 +13,7 @@ const initialStateTodos =
 
 const App = () => {
   const [todos, setTodos] = useState(initialStateTodos);
-  const [filter, setFilter] = useState("completed");
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -99,7 +99,7 @@ const App = () => {
         />
         {/* Todo Filter */}
         <TodoFilter changeFilter={changeFilter} filter={filter} />
-        <footer className="mt-8 text-center dark:text-gray-400">
+        <footer className="py-8 text-center dark:text-gray-400">
           <p>
             <small>
               Created with{" "}

@@ -3,7 +3,7 @@ const MyButton = () => {
     console.log("me diste click: ", name);
   };
 
-  return <button onClick={() => handleClick("🍎")}>i'am a button</button>;
+  return <button onClick={() => handleClick("🍎")}>I'm a button</button>;
 };
 
 export default MyButton;
