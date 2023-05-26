@@ -35,7 +35,7 @@ module.exports = {
 
 ## resource
 
-[tailwind-cheat-sheet](https://nerdcave.com/tailwind-cheat-sheet)
+[tailwind-cheat-sheet](https://tailwindcomponents.com/cheatsheet/)
 
 ## Todo star project
 
