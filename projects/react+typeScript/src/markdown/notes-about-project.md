@@ -82,3 +82,37 @@ let´s continue with another component User, let´s see a different example.
 ```bash
 const user: undefined
 ```
+
+# User Component
+
+```jsx
+import { useState } from "react";
+
+const User = () => {
+  const [user, setUser] = useState();
+
+  const login = () => {
+    setUser({
+      uid: "abc123",
+      name: " Kyo",
+    });
+  };
+
+  return (
+    <>
+      <h2>User: useState</h2>
+      <button>click</button>
+    </>
+  );
+};
+
+export default User;
+```
+
+We have saw that typescript mark an error, because I´m assign undefines to useState.
+
+I need to establish in the login the information of the user, here it is already convenient to work with classes or interfaces to put the typing, interface is compiled and it is equal to zero lines of code.
+
+Internally, to the useState we are going to say to him that it handles a user.
+
+this Hook the useState going to manage an User, and the value of the setState is perfectly valid, besides I can set it to a default value

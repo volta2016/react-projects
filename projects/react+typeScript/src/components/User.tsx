@@ -1,12 +1,32 @@
-import React, { useState } from 'react'
+import { useState } from "react";
 
-const User = () => {
-
-  const [user, setUser] = useState()
-
-  return (
-    <h2>User: useState</h1>
-  )
+interface User {
+  uid: string;
+  name: string;
 }
 
-export default User
+const temUser: User = {
+  uid: "avbcxx",
+  name: "",
+};
+
+const User = () => {
+  const [user, setUser] = useState<User>(temUser);
+
+  const login = () => {
+    setUser({
+      uid: "abc123",
+      name: " Kyo",
+    });
+  };
+
+  return (
+    <>
+      <h2>User: useState</h2>
+      <button onClick={login}>login</button>
+      {!user ? <pre>No user</pre> : <pre> {JSON.stringify(user)}</pre>}
+    </>
+  );
+};
+
+export default User;
