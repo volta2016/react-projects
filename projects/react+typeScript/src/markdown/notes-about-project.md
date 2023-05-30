@@ -116,3 +116,39 @@ I need to establish in the login the information of the user, here it is already
 Internally, to the useState we are going to say to him that it handles a user.
 
 this Hook the useState going to manage an User, and the value of the setState is perfectly valid, besides I can set it to a default value
+
+in this case we would have to have the seconds as a dependency, this is going to generate a conflict, because every time I change second it is going to fire again useEffect, every time it is going to create a lot of time intervals and this is not going to be seen, as we are expecting, because every second is creating new intervals. In theory, we would not use the second dependency.
+
+if we establish a callback inside the function that we have in useState.
+
+- The first value that this one admits is the value of state
+
+- if I leave the cursor over it says the current value
+
+What we can do with useEffect is to execute an instruction when the component is going to be destroyed
+
+```tsx
+import { useEffect, useState } from "react";
+
+const Timer = () => {
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    setInterval(() => setSeconds((s) => s + 1), 1000);
+  }, []);
+
+  return (
+    <h3>
+      Timer: <small>{seconds}</small>
+    </h3>
+  );
+};
+
+export default Timer;
+```
+
+let's suppose I need to receive an argument from the parent, this argument contains milliseconds that we have to set here
+
+```tsx
+setInterval(() => setSeconds((s) => s + 1), 1000);
+```
