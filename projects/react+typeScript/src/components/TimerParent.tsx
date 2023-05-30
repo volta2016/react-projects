@@ -1,17 +1,27 @@
+import { useState } from "react";
 import Timer from "./Timer";
+
 const TimerParent = () => {
   const [miliseconds, setMiliseconds] = useState(1000);
 
   return (
     <>
-      <span>milliseconds {1000}</span>
+      <span>milliseconds {miliseconds}</span>
 
-      <button style={{ backgroundColor: "slateblue", margin: "0 16px" }}>
+      <button
+        style={{ backgroundColor: "slateblue", margin: "0 16px" }}
+        onClick={() => setMiliseconds(1000)}
+      >
         1000
       </button>
-      <button style={{ backgroundColor: "limegreen" }}>1000</button>
+      <button
+        style={{ backgroundColor: "limegreen" }}
+        onClick={() => setMiliseconds(2000)}
+      >
+        2000
+      </button>
 
-      <Timer />
+      <Timer miliseconds={miliseconds} />
     </>
   );
 };
