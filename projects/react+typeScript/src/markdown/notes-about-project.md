@@ -296,3 +296,98 @@ The error "Cannot find namespace 'NodeJS'" occurs because the type NodeJS.Timeou
 To fix this issue, you can replace NodeJS.Timeout with **number** in the useRef
 
 the important thing of this exercise is that we are receiving the information of a parent component, we are sending it to the child, we are establishing the type of data that the child component is receiving and we are using it here
+
+## userReducer
+
+The action used to return the new state, by an action increment of one.
+
+normally the reducer works with a switch, a reducer will always return a new state.
+a new state
+
+it never modifies the state, in case we don't execute any action we must always execute the state.
+
+in the hook useReducer we have two parameter that we desestructuring
+
+1. conntState -> we receive all this :
+
+```tsx
+const initialState = {
+  count 0,
+};
+```
+
+2. dispatch -> which is a function to be used to dispatch actions of a specific type 👍
+
+````jsx
+type ActionType = {
+  type ``increment``,
+};
+```
+
+let's see that we have 2 ActionType
+type ActionType = { type: "increment" } | { type: "decrement" };
+
+it is possible to keep a complex state in the useState, but we test the form with useReducer.
+
+The payload is known as the argument that carries in the action.
+
+
+now I'm forcing that if a custom type action is triggered it has to come with the payload
+
+```tsx
+//keep the state of the app
+
+import { useReducer } from "react";
+
+const initialState = {
+  count: 0,
+}; //this never going to modify
+
+type StateType = typeof initialState;
+
+type ActionType =
+  | { type: "increment" }
+  | { type: "decrement" }
+  | { type: "custom"; payload: number };
+
+const counterReducer = (state: StateType, action: ActionType): StateType => {
+  switch (action.type) {
+    case "increment":
+      return {
+        ...state,
+        count: state.count + 1,
+      };
+    case "decrement":
+      return {
+        ...state,
+        count: state.count - 1,
+      };
+    case "custom":
+      return {
+        ...state,
+        count: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+const Reducer = () => {
+  const [countState, dispatch] = useReducer(counterReducer, initialState);
+
+  return (
+    <>
+      <h2>CounterReducer: {countState.count}</h2>
+      <button onClick={() => dispatch({ type: "increment" })}>+</button>
+      <button onClick={() => dispatch({ type: "decrement" })}>-1</button>
+      <button onClick={() => dispatch({ type: "custom", payload: 100 })}>
+        100
+      </button>
+    </>
+  );
+};
+
+export default Reducer;
+```
+````

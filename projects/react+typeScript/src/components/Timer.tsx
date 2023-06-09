@@ -6,7 +6,7 @@ type TimerArgs = {
 
 const Timer = ({ miliseconds }: TimerArgs) => {
   const [seconds, setSeconds] = useState(0);
-  const ref = useRef<number>();
+  const ref = useRef<number>(); //type generic number
 
   console.log(miliseconds);
 
