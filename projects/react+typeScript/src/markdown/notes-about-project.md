@@ -318,7 +318,7 @@ const initialState = {
 
 2. dispatch -> which is a function to be used to dispatch actions of a specific type 👍
 
-````jsx
+```jsx
 type ActionType = {
   type ``increment``,
 };
@@ -330,7 +330,6 @@ type ActionType = { type: "increment" } | { type: "decrement" };
 it is possible to keep a complex state in the useState, but we test the form with useReducer.
 
 The payload is known as the argument that carries in the action.
-
 
 now I'm forcing that if a custom type action is triggered it has to come with the payload
 
@@ -390,4 +389,16 @@ const Reducer = () => {
 
 export default Reducer;
 ```
-````
+
+## Custom Hooks
+
+```jsx
+<div className="form-box">
+  <label htmlFor="">Email:</label>
+  <input type="email" name="email" onChange={handleChange} />
+</div>
+```
+
+el argumento que se omite es el onChange, para ser el argumento que está enviando el handleChange.
+
+El problema es que tengo en consola un SyntheticBaseEvent
