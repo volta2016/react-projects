@@ -399,6 +399,102 @@ export default Reducer;
 </div>
 ```
 
-el argumento que se omite es el onChange, para ser el argumento que está enviando el handleChange.
+the argument that is omitted is the onChange, to be the argument that is sending the handleChange.
 
-El problema es que tengo en consola un SyntheticBaseEvent
+The problem is that I have in console a SyntheticBaseEvent
+
+![question-mark](./number.png)
+
+This event I can destructuring the target
+
+```tsx
+const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {};
+```
+
+```tsx
+const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+  const { name, value } = target;
+};
+```
+
+all this part that I have mark, I want to do like a custom
+hook
+
+```tsx
+import { ChangeEvent, useState } from "react";
+
+const Formulario2 = () => {
+  // custom hooks
+  const [formulario, setFormulario] = useState({
+    postal: "",
+    ciudad: "",
+  });
+
+  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = target;
+
+    setFormulario({
+      ...formulario,
+      [name]: value,
+    });
+  };
+  // custom hooks
+
+  return (
+    <>
+      <form autoComplete="off">
+        <h2>Formulario</h2>
+        <div className="form-box">
+          <label htmlFor="">Código Postal:</label>
+          <input type="text" name="postal" onChange={handleChange} />
+        </div>
+        <div className="form-box">
+          <label htmlFor="">Ciudad:</label>
+          <input type="text" name="name" onChange={handleChange} />
+        </div>
+      </form>
+      <pre>{JSON.stringify(formulario)}</pre>
+    </>
+  );
+};
+
+export default Formulario2;
+```
+
+## use of generic
+
+```tsx
+interface FormData {
+  email: string;
+  nombre: string;
+  edad: number;
+}
+
+const Formulario = () => {
+  const { formulario, handleChange } = useForm<FormData>({
+    email: "contacto@voltauxui.cl",
+    nombre: "Kyo",
+  });
+```
+
+how can doing to recived **FormData**this type of generic data here, we going to pass <T>
+
+```tsx
+export function useForm<T>(initState: T) {
+  const [formulario, setFormulario] = useState(initState);
+
+  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = target;
+
+    setFormulario({
+      ...formulario,
+      [name]: value,
+    });
+  };
+
+  return {
+    formulario,
+    handleChange,
+  };
+}
+```

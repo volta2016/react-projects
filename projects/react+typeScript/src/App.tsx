@@ -4,6 +4,7 @@ import TimerParent from "./components/TimerParent";
 import User from "./components/User";
 import Reducer from "./components/Reducer";
 import Formulario from "./components/Formulario";
+import Formulario2 from "./components/Formulario2";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
       <h2>Custom hooks</h2>
       <hr />
       <Formulario />
+      <br />
+      <Formulario2 />
     </>
   );
 }
